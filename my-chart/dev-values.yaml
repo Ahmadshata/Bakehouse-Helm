@@ -1,0 +1,16 @@
+replicaCount: 1
+
+image:
+  repository: ahmadesmailshata
+  name: bakehouseiti
+  tag: ""
+  pullPolicy: IfNotPresent
+
+labels:
+  app: bakehouse
+  env: dev
+
+service:
+  type: NodePort
+
+

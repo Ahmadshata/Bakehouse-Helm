@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Release.Name }}-bakehouse
+  labels:
+    {{- include "mylabels" . }}  
+spec:
+  replicas: {{ .Values.replicaCount}}
+  selector:
+    matchLabels:
+      app: bakehouse
+  template:
+    metadata:
+      labels:
+        app: bakehouse
+    spec:
+      containers:
+{{- with .Values.image }}
+{{- if .tag }}
+      - image: {{ .repository }}/{{ .name }}:{{ .tag}}
+{{- else }}
+      - image: {{ .repository }}/{{ .name }}:v8
+{{- end }}
+{{- end }}
+        name: bakehouse
+        imagePullPolicy: {{ .Values.image.pullPolicy }}
+        ports:
+        - containerPort: 80
+        resources: {}
