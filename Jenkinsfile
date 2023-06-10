@@ -29,12 +29,12 @@ pipeline {
                         withCredentials([file(credentialsId: 'kubeconfig', variable: 'KUBECONFIG')]) {
                             sh '''
                                 export BUILD_NUMBER=$(cat ../build.txt)
-                                export che=$(helm list | grep "my-release")
+                                export che=$(helm list | grep "myrelease")
                                 if [ -z $che ]
                                 then
-                                    helm install my-release ./my-chart/ --values ./my-chart/dev-values.yaml --set image.tag=${BUILD_NUMBER}
+                                    helm install myrelease ./my-chart/ --values ./my-chart/dev-values.yaml --set image.tag=${BUILD_NUMBER}
                                 else
-                                    helm upgrade my-release ./my-chart/ --values ./my-chart/dev-values.yaml --set image.tag=${BUILD_NUMBER}
+                                    helm upgrade myrelease ./my-chart/ --values ./my-chart/dev-values.yaml --set image.tag=${BUILD_NUMBER}
                                 fi
 
                             '''
