@@ -8,7 +8,7 @@ image:
 
 labels:
   app: bakehouse
-  env: dev
+  env: test
 
 service:
   type: NodePort
