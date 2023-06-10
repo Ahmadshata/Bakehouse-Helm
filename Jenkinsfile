@@ -35,6 +35,7 @@ pipeline {
                                     helm install my-release ./my-chart/ --values ./my-chart/dev-values.yaml --set image.tag=${BUILD_NUMBER}
                                 else
                                     helm upgrade my-release ./my-chart/ --values ./my-chart/dev-values.yaml --set image.tag=${BUILD_NUMBER}
+                                fi
 
                             '''
                         }
